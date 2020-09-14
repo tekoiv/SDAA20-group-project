@@ -1,0 +1,1 @@
+Java chess. This is an old project with better implementation for a uni course.
