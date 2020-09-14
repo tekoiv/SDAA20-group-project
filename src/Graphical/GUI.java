@@ -1,5 +1,7 @@
 package Graphical;
 
+import Game.Controller;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -23,8 +25,10 @@ public class GUI {
   };
   private final int BLACK = 0, WHITE = 1;
 
+  private final Controller controller;
 
-  public GUI() {
+  public GUI(Controller controller) {
+    this.controller = controller;
   }
 
   private Image[][] fetchSprites() {
@@ -61,6 +65,8 @@ public class GUI {
     Action startGameButton = new AbstractAction("Start game") {
       @Override
       public void actionPerformed(ActionEvent e) {
+        controller.resetState();
+        controller.getGame().getBoard().initBoard();
         initialIcons();
       }
     };
@@ -71,6 +77,9 @@ public class GUI {
 
     for(int i = 0; i < chessBoardSquares.length; i++) {
       for (int j = 0; j < chessBoardSquares[i].length; j++) {
+
+        final int BUTTON_X = j;
+        final int BUTTON_Y = i;
 
         JButton square = new JButton();
         square.setMargin(buttonMargin);
@@ -88,6 +97,15 @@ public class GUI {
 
         square.addActionListener(e -> {
           // Square action listeners
+          if (controller.getFirstClick()) {
+            controller.setStartingCoordinates(new int[]{BUTTON_X, BUTTON_Y});
+          } else {
+            controller.setEndingCoordinates(new int[]{BUTTON_X, BUTTON_Y});
+            if (controller.tryMove()) {
+              renderBoard();
+            }
+          }
+          controller.toggleFirstClick();
         });
       }
     }
@@ -132,5 +150,13 @@ public class GUI {
         chessBoardSquares[j][i].setIcon(null);
       }
     }
+  }
+
+  private void renderBoard() {
+    ImageIcon currentSprite = (ImageIcon) chessBoardSquares[controller.getStartingX()][controller.getStartingY()].getIcon();
+    // Delete old icon
+    chessBoardSquares[controller.getStartingX()][controller.getStartingY()].setIcon(null);
+    // Change icon location
+    chessBoardSquares[controller.getEndingX()][controller.getEndingY()].setIcon(currentSprite);
   }
 }
