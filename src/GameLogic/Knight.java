@@ -7,6 +7,8 @@ public class Knight extends ChessPiece {
     public Knight(boolean white){
         super(white);
     }
+ 
+
         @Override
         public boolean isAllowed(Board board, Square start, Square finish) {
           if (finish.getPiece() != null && finish.getPiece().isWhite() == this.isWhite()) {

@@ -36,6 +36,15 @@ public class Board {
       this.squares[i][7] = new Square(i, 7, new Knight(true));
     }
 
+    // Black pieces
+    // King
+    this.squares[4][0] = new Square(4, 0, new King(false));
+
+    //White pieces
+    // King
+    this.squares[4][7] = new Square(4, 7, new King(true));
+    
+
     // Remaining squares (with no pieces)
     for(int i = 2; i < 6; i++) {
       for(int j = 0; j < 8; j++) {
