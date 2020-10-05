@@ -10,7 +10,7 @@ public class Knight extends ChessPiece {
         if ((start.get_y() - finish.get_y() == y || start.get_y() - finish.get_y() == -y) && ((start.get_x() - finish.get_x() == x)||(start.get_x() - finish.get_x() == -x))) {
             return true;
           }
-        if ((start.get_x() - finish.get_x() == y || start.get_x() - finish.get_x() == -y) && ((start.get_y() - finish.get_y() == x)||(start.get_y() - finish.get_y() == -x))) {
+        else if ((start.get_x() - finish.get_x() == y || start.get_x() - finish.get_x() == -y) && ((start.get_y() - finish.get_y() == x)||(start.get_y() - finish.get_y() == -x))) {
         return true;
         }
         return false;
@@ -31,7 +31,7 @@ public class Knight extends ChessPiece {
                 if (moves(start, finish, 2, 1)){
                     return true;
                 }
-                // White knight kills
+                // White knight killing
             } else {
                 if(moves(start,finish,2,1)){
                     return true;
@@ -43,7 +43,7 @@ public class Knight extends ChessPiece {
                 if(moves(start,finish,2,1)){
                 return true;
             }
-                // Black knight kills
+                // Black knight killing
             } else {
                 if(moves(start,finish,2,1)){
                     return true;
