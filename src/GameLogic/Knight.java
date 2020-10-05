@@ -19,13 +19,22 @@ public class Knight extends ChessPiece {
           if (start.getPiece().isWhite()) {
             if (finish.getPiece() == null) {
               // Normal forward moves
-              if ((start.get_y() - finish.get_y() == 1 || (this.startingMove && (start.get_y() - finish.get_y() == 2))) && start.get_x() - finish.get_x() == 0) {
+              if ((start.get_y() - finish.get_y() == 2 || start.get_y() - finish.get_y() == -2) && ((start.get_x() - finish.get_x() == 1)||(start.get_x() - finish.get_x() == -1))) {
                 this.startingMove = false;
                 return true;
               }
+              if ((start.get_x() - finish.get_x() == 2 || start.get_x() - finish.get_x() == -2) && ((start.get_y() - finish.get_y() == 1)||(start.get_y() - finish.get_y() == -1))) {
+                this.startingMove = false;
+                return true;
+              }
+              
               // Killing
             } else {
-              if (start.get_y() - finish.get_y() == 1 && Math.abs(start.get_x() - finish.get_x()) == 1) {
+              if ((start.get_y() - finish.get_y() == 2 || start.get_y() - finish.get_y() == -2) && ((start.get_x() - finish.get_x() == 1)||(start.get_x() - finish.get_x() == -1)))  {
+                this.startingMove = false;
+                return true;
+              }
+              if ((start.get_x() - finish.get_x() == 2 || start.get_x() - finish.get_x() == -2) && ((start.get_y() - finish.get_y() == 1)||(start.get_y() - finish.get_y() == -1))) {
                 this.startingMove = false;
                 return true;
               }
@@ -33,16 +42,24 @@ public class Knight extends ChessPiece {
           } else {
             if (finish.getPiece() == null) {
               // Normal forward moves
-              if ((start.get_y() - finish.get_y() == -1 || (this.startingMove && (start.get_y() - finish.get_y() == -2))) && start.get_x() - finish.get_x() == 0) {
+              if ((start.get_y() - finish.get_y() == 2 || start.get_y() - finish.get_y() == -2) && ((start.get_x() - finish.get_x() == 1)||(start.get_x() - finish.get_x() == -1))) {
+                this.startingMove = false;
+                return true;
+              }
+              if ((start.get_x() - finish.get_x() == 2 || start.get_x() - finish.get_x() == -2) && ((start.get_y() - finish.get_y() == 1)||(start.get_y() - finish.get_y() == -1))) {
                 this.startingMove = false;
                 return true;
               }
               // Killing
             } else {
-              if (start.get_y() - finish.get_y() == -1 && Math.abs(start.get_x() - finish.get_x()) == 1) {
-                this.startingMove = false;
-                return true;
-              }
+                if ((start.get_y() - finish.get_y() == 2 || start.get_y() - finish.get_y() == -2) && ((start.get_x() - finish.get_x() == 1)||(start.get_x() - finish.get_x() == -1))) {
+                    this.startingMove = false;
+                    return true;
+                  }
+                  if ((start.get_x() - finish.get_x() == 2 || start.get_x() - finish.get_x() == -2) && ((start.get_y() - finish.get_y() == 1)||(start.get_y() - finish.get_y() == -1))) {
+                    this.startingMove = false;
+                    return true;
+                  }
             }
           }
           return false;
