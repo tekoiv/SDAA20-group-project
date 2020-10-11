@@ -6,12 +6,8 @@ public class Bishop extends ChessPiece {
     super(white);
   }
 
-  @Override
-  public boolean isAllowed(Board board, Square start, Square finish) {
-    if (finish.getPiece() != null && finish.getPiece().isWhite() == this.isWhite()) {
-      return false;
-    }
-    // Check for allowed moves
+  public boolean moveBishop(Board board, Square start, Square finish){
+        // Check for allowed moves
         if(Math.abs(finish.get_x() - start.get_x()) ==  Math.abs(finish.get_y() - start.get_y())){
           int diff = Math.abs(finish.get_y() - start.get_y());
           //Move
@@ -22,7 +18,7 @@ public class Bishop extends ChessPiece {
               if(start.get_x() < finish.get_x()){
                 a *= -1;
               }
-              if(board.getSquare(start.get_x()-a, (start.get_y()-i)).getPiece() != null){
+              if(board.getSquare((start.get_x()-a), (start.get_y()-i)).getPiece() != null){
                 if(i == diff){
                   return true;
                 }
@@ -38,7 +34,7 @@ public class Bishop extends ChessPiece {
               if(start.get_x() < finish.get_x()){
                 a *= -1;
               }
-              if(board.getSquare((start.get_x()-a), start.get_y()+i).getPiece() != null){
+              if(board.getSquare((start.get_x()-a), (start.get_y()+i)).getPiece() != null){
                 if(i == diff){
                   return true;
                 }
@@ -51,4 +47,13 @@ public class Bishop extends ChessPiece {
         }
     return false;
   }
+
+  @Override
+  public boolean isAllowed(Board board, Square start, Square finish) {
+    if (finish.getPiece() != null && finish.getPiece().isWhite() == this.isWhite()) {
+      return false;
+    }
+    return(moveBishop(board, start, finish));
+
+}
 }
