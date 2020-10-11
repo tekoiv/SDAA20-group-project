@@ -43,6 +43,35 @@ public class Board {
     // Bishops
     this.squares[2][7] = new Square(0, 7, new Bishop(true));
     this.squares[5][7] = new Square(7, 7, new Bishop(true));
+    // Knight
+    for(int i = 1; i < 7; i+=5) {
+      this.squares[i][0] = new Square(i, 0, new Knight(false));
+    }
+
+    // White pieces
+    // Knight
+    for(int i = 1; i < 7; i+=5) {
+      this.squares[i][7] = new Square(i, 7, new Knight(true));
+    }
+
+    // Black pieces
+    // King
+    this.squares[4][0] = new Square(4, 0, new King(false));
+
+    //White pieces
+    // King
+    this.squares[4][7] = new Square(4, 7, new King(true));
+
+    //Black Pieces
+    // Queen
+    this.squares[3][0] = new Square(3, 0, new Queen(false));
+
+    //White Pieces
+    // Queen
+    this.squares[3][7] = new Square(3, 7, new Queen(true));
+
+
+    
 
     // Remaining squares (with no pieces)
     for(int i = 2; i < 6; i++) {
