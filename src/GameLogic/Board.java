@@ -43,6 +43,16 @@ public class Board {
     //White pieces
     // King
     this.squares[4][7] = new Square(4, 7, new King(true));
+
+    //Black Pieces
+    // Queen
+    this.squares[3][0] = new Square(3, 0, new Queen(false));
+
+    //White Pieces
+    // Queen
+    this.squares[3][7] = new Square(3, 7, new Queen(true));
+
+
     
 
     // Remaining squares (with no pieces)
