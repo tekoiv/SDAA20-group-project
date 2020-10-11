@@ -24,6 +24,26 @@ public class Board {
       this.squares[i][6] = new Square(i, 6, new Pawn(true));
     }
 
+    // Black pieces
+    // Rooks
+    this.squares[0][0] = new Square(0, 0, new Rook(false));
+    this.squares[7][0] = new Square(7, 0, new Rook(false));
+
+    // White pieces
+    // Rooks
+    this.squares[0][7] = new Square(0, 7, new Rook(true));
+    this.squares[7][7] = new Square(7, 7, new Rook(true));
+
+    // Black pieces
+    // Bishops
+    this.squares[2][0] = new Square(0, 0, new Bishop(false));
+    this.squares[5][0] = new Square(7, 0, new Bishop(false));
+
+    // White pieces
+    // Bishops
+    this.squares[2][7] = new Square(0, 7, new Bishop(true));
+    this.squares[5][7] = new Square(7, 7, new Bishop(true));
+
     // Remaining squares (with no pieces)
     for(int i = 2; i < 6; i++) {
       for(int j = 0; j < 8; j++) {
